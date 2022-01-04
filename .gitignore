@@ -1,0 +1,7 @@
+/prepare/yolo_v5s6/yolov5s6.pt
+/prepare/yolo_v5s6/yolov5s6.pt.onnx
+/prepare/yolo_v5s6/yolov5s6.torchscript
+/prepare/yolo_v5s6/yolov5s6_fp16.onnx
+3party
+*.onnx
+*.engine

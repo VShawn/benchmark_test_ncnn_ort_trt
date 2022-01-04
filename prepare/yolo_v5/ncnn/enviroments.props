@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ImportGroup Label="PropertySheets" />
+	<PropertyGroup Label="UserMacros">
+		<OPENCV_INCLUDE>$(SolutionDir)3party\opencv4.6.0\include</OPENCV_INCLUDE>
+		<OPENCV_LIBRARY>$(SolutionDir)3party\opencv4.6.0\x64\vc15\lib</OPENCV_LIBRARY>
+
+		<TENSORRT_INCLUDE>$(SolutionDir)3party\TensorRT-8.4.1.5\include</TENSORRT_INCLUDE>
+		<TENSORRT_LIBRARY>$(SolutionDir)3party\TensorRT-8.4.1.5\lib</TENSORRT_LIBRARY>
+		<TENSORRT_COMMON_INCLUDE>$(SolutionDir)3party\TensorRT-8.4.1.5\samples\common</TENSORRT_COMMON_INCLUDE>
+		<TENSORRT_COMMON_WINDOWS_INCLUDE>$(SolutionDir)3party\TensorRT-8.4.1.5\samples\common\windows</TENSORRT_COMMON_WINDOWS_INCLUDE>
+
+		<CUDA_INCLUDE>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\include</CUDA_INCLUDE>
+		<CUDA_LIBRARY>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\lib\x64</CUDA_LIBRARY>
+	</PropertyGroup>
+	<PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='Debug'">
+		<OPENCV_DEPENDENCIES>opencv_world460d.lib</OPENCV_DEPENDENCIES>
+		<CNDA_DEPENDENCIES>cudnn.lib;cublas.lib;cudart.lib;nvrtc.lib</CNDA_DEPENDENCIES>
+		<TENSORRT_DEPENDENCIES>nvinfer.lib;nvinfer_plugin.lib;nvonnxparser.lib;nvparsers.lib;</TENSORRT_DEPENDENCIES>
+	</PropertyGroup>
+	<PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='Release'">
+		<OPENCV_DEPENDENCIES>opencv_world460.lib</OPENCV_DEPENDENCIES>
+		<CNDA_DEPENDENCIES>cudnn.lib;cublas.lib;cudart.lib;nvrtc.lib</CNDA_DEPENDENCIES>
+		<TENSORRT_DEPENDENCIES>nvinfer.lib;nvinfer_plugin.lib;nvonnxparser.lib;nvparsers.lib;</TENSORRT_DEPENDENCIES>
+	</PropertyGroup>
+	<PropertyGroup>
+		<OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)</OutDir>
+		<IntDir>$(SolutionDir)Build\Int\$(ProjectName)\$(Configuration)\</IntDir>
+		<IncludePath>$(ProjectDir);$(OPENCV_INCLUDE);$(TENSORRT_INCLUDE);$(CUDA_INCLUDE);$(IncludePath)</IncludePath>
+		<LibraryPath>$(OPENCV_LIBRARY);$(TENSORRT_LIBRARY);$(CUDA_LIBRARY);$(LibraryPath)</LibraryPath>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+			<PreprocessorDefinitions>_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;NOMINMAX</PreprocessorDefinitions>
+			<LanguageStandard>stdcpp17</LanguageStandard>
+			<LanguageStandard_C>stdc17</LanguageStandard_C>
+		</ClCompile>
+		<Link>
+			<AdditionalDependencies>$(OPENCV_DEPENDENCIES);$(CNDA_DEPENDENCIES);$(TENSORRT_DEPENDENCIES);%(AdditionalDependencies)</AdditionalDependencies>
+		</Link>
+	</ItemDefinitionGroup>
+</Project>

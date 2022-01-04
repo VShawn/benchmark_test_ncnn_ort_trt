@@ -1,0 +1,6 @@
+[submodule "prepare/yolo_v5/pytorch"]
+	path = prepare/yolo_v5/pytorch
+	url = git@github.com:ultralytics/yolov5.git
+[submodule "prepare/yolox/py_yolox"]
+	path = prepare/yolox/py_yolox
+	url = git@github.com:Megvii-BaseDetection/YOLOX.git

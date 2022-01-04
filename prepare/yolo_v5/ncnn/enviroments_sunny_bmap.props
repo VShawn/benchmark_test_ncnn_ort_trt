@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ImportGroup Label="PropertySheets" />
+	<PropertyGroup Label="UserMacros">
+		<SUNNY_INCLUDE>$(SolutionDir)3party\sunny_bmap\include</SUNNY_INCLUDE>
+		<SUNNY_LIBRARY>$(SolutionDir)3party\sunny_bmap\lib</SUNNY_LIBRARY>
+	</PropertyGroup>
+	<PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='Debug'">
+		<SUNNY_DEPENDENCIES>SunnySliceSdk.lib</SUNNY_DEPENDENCIES>
+	</PropertyGroup>
+	<PropertyGroup Label="UserMacros" Condition="'$(Configuration)'=='Release'">
+		<SUNNY_DEPENDENCIES>SunnySliceSdk.lib</SUNNY_DEPENDENCIES>
+	</PropertyGroup>
+	<PropertyGroup>
+		<IncludePath>$(SUNNY_INCLUDE);$(IncludePath)</IncludePath>
+		<LibraryPath>$(SUNNY_LIBRARY);$(LibraryPath)</LibraryPath>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<Link>
+			<AdditionalDependencies>$(SUNNY_DEPENDENCIES);%(AdditionalDependencies)</AdditionalDependencies>
+		</Link>
+	</ItemDefinitionGroup>
+</Project>
